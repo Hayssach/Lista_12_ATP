@@ -3,44 +3,44 @@
 
 typedef struct {
     char nome[50];
-    float notaExercicios;
-    float notaProva1;
-    float notaProva2;
+    float notaEx;
+    float notaP1;
+    float notaP2;
 } Aluno;
 
-void calcular_media(Aluno *a) {
-    float mediaProvas = (a->notaProva1 * 4 + a->notaProva2 * 6) / 10;
-    float mediaFinal = (a->notaExercicios * 0.2) + (mediaProvas * 0.8);
-    printf("Aluno: %s | Média Final: %.2f\n", a->nome, mediaFinal);
+void calcula_media(Aluno *b) {
+    float meProvas = (b->notaP1 * 4 + b->notaP2 * 6) / 10;
+    float meFinal = (b->notaEx * 0.2) + (mProvas * 0.8);
+    printf("Aluno: %s | MÃ©dia Final: %.2f\n", b->nome, meFinal);
 }
 
 int main() {
-    Aluno a1, a2;
+    Aluno c1, c2;
 
-    // Cadastro dos dados do aluno a1
-    printf("Digite o nome do aluno 1 (sem espaços): ");
-    scanf("%s", a1.nome);
-    printf("Nota dos exercícios: ");
-    scanf("%f", &a1.notaExercicios);
+    // Cadastro dos dados do aluno c1
+    printf("Digite o nome do aluno 1 (sem espaÃ§os): ");
+    scanf("%s", c1.nome);
+    printf("Nota dos exercÃ­cios: ");
+    scanf("%f", &c1.notaEx);
     printf("Nota da Prova 1: ");
-    scanf("%f", &a1.notaProva1);
+    scanf("%f", &c1.notaP1);
     printf("Nota da Prova 2: ");
-    scanf("%f", &a1.notaProva2);
+    scanf("%f", &c1.notaP2);
 
-    // Cadastro dos dados do aluno a2
-    printf("\nDigite o nome do aluno 2 (sem espaços): ");
-    scanf("%s", a2.nome);
-    printf("Nota dos exercícios: ");
-    scanf("%f", &a2.notaExercicios);
+    // Cadastro dos dados do aluno c2
+    printf("\nDigite o nome do aluno 2 (sem espaÃ§os): ");
+    scanf("%s", c2.nome);
+    printf("Nota dos exercÃ­cios: ");
+    scanf("%f", &c2.notaEx);
     printf("Nota da Prova 1: ");
-    scanf("%f", &a2.notaProva1);
+    scanf("%f", &c2.notaP1);
     printf("Nota da Prova 2: ");
-    scanf("%f", &a2.notaProva2);
+    scanf("%f", &c2.notaP2);
 
-    // Calculando e exibindo a média dos alunos
-    calcular_media(&a1);
-    calcular_media(&a2);
+    // Calculando e exibindo a mÃ©dia dos alunos
+    calcula_media(&c1);
+    calcula_media(&c2);
 
-    getchar(); // pausa antes de sair (para sistemas como Windows)
+    getchar();
     return 0;
 }
