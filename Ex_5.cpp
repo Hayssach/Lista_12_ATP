@@ -7,19 +7,19 @@
 
 typedef struct {
     char nome[MAX_NOME];
-    float preco;
+    float p;
 } Produto;
 
 typedef struct {
-    Produto produtos[MAX_ITENS];
-    int quantidadeProdutos;
+    Produto pdt[MAX_ITENS];
+    int qtdProdutos;
 } Menu;
 
-// FunÁ„o para inicializar um produto
-void inicializarProduto(Produto *p, const char *nome, float preco) {
-    strncpy(p->nome, nome, MAX_NOME - 1);
-    p->nome[MAX_NOME - 1] = '\0'; // garantir terminaÁ„o
-    p->preco = preco;
+// Fun√ß√£o para inicializar um produto
+void inicializaProduto(Produto *P, const char *Nome, float p) {
+    strncpy(P->Nome, Nome, MAX_NOME - 1);
+    P->Nome[MAX_NOME - 1] = '\0'; // garantir termina√ß√£o
+    P->p = p;
 }
 
 int main() {
@@ -30,40 +30,41 @@ int main() {
     }
 
     Menu menu;
-    fscanf(fmenu, "%d", &menu.quantidadeProdutos);  // n˙mero de itens no menu
+    fscanf(fmenu, "%d", &menu.qtdProdutos);  // n√∫mero de itens no menu
 
-    // LÍ os itens do menu usando struct Produto
-    for (int i = 0; i < menu.quantidadeProdutos; i++) {
-        char nomeTemp[MAX_NOME];
-        float precoTemp;
-        fscanf(fmenu, "%s %f", nomeTemp, &precoTemp);
-        inicializarProduto(&menu.produtos[i], nomeTemp, precoTemp);
+    // L√™ os itens do menu usando struct Produto
+    for (int i = 0; i < menu.qtdProdutos; i++) {
+        char nTemp[MAX_NOME];
+        float pTemp;
+        fscanf(fmenu, "%s %f", nTemp, &pTemp);
+        inicializar
+            Produto(&menu.pdt[i], nTemp, pTemp);
     }
 
     fclose(fmenu);
 
     // Mostra o menu
     printf("==== MENU ====\n");
-    for (int i = 0; i < menu.quantidadeProdutos; i++) {
-        printf("%d - %s : R$ %.2f\n", i + 1, menu.produtos[i].nome, menu.produtos[i].preco);
+    for (int i = 0; i < menu.qdtProdutos; i++) {
+        printf("%d - %s : R$ %.2f\n", i + 1, menu.pdt[i].nome, menu.pdt[i].p);
     }
 
-    int quantidades[MAX_ITENS] = {0};
-    int escolha, qtd;
+    int qdts[MAX_ITENS] = {0};
+    int e, qtd;
 
-    // LÍ pedidos do usu·rio
+    // L√™ pedidos do usu√°rio
     while (1) {
-        printf("Digite o n˙mero do item que deseja comprar (0 para finalizar): ");
-        scanf("%d", &escolha);
-        if (escolha == 0) break;
-        if (escolha < 1 || escolha > menu.quantidadeProdutos) {
-            printf("OpÁ„o inv·lida!\n");
+        printf("Digite o n√∫mero do item que deseja comprar (0 para finalizar): ");
+        scanf("%d", &e);
+        if (e == 0) break;
+        if (e < 1 || e > menu.qtdProdutos) {
+            printf("Op√ß√£o inv√°lida!\n");
             continue;
         }
 
         printf("Digite a quantidade de %s: ", menu.produtos[escolha - 1].nome);
         scanf("%d", &qtd);
-        quantidades[escolha - 1] += qtd;
+        qdts[e - 1] += qtd;
     }
 
     // Gera boleto.txt
@@ -74,12 +75,12 @@ int main() {
     }
 
     fprintf(fbol, "====== BOLETO ======\n");
-    float total = 0.0;
-    for (int i = 0; i < menu.quantidadeProdutos; i++) {
-        if (quantidades[i] > 0) {
-            float subt = quantidades[i] * menu.produtos[i].preco;
-            fprintf(fbol, "%s x %d = R$ %.2f\n", menu.produtos[i].nome, quantidades[i], subt);
-            total += subt;
+    float tl = 0.0;
+    for (int i = 0; i < menu.qtdProdutos; i++) {
+        if (qtds[i] > 0) {
+            float subt = qtds[i] * menu.pdt[i].p;
+            fprintf(fbol, "%s x %d = R$ %.2f\n", menu.pdt[i].nome, qtds[i], subt);
+            tl += subt;
         }
     }
     fprintf(fbol, "TOTAL A PAGAR: R$ %.2f\n", total);
@@ -87,6 +88,6 @@ int main() {
 
     printf("\nPedido registrado no arquivo boleto.txt\n");
 
-    getchar(); // Para pausar no Windows
+    getchar(); 
     return 0;
 }
